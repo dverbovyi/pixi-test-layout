@@ -6,6 +6,8 @@ var Stage = (function (Pixi, Helper, MapContainerView, ButtonView) {
         this.initialize();
     }
 
+    Stage.SCALE_STEP = .1;
+
     Helper.extend(Stage, Pixi.Container);
 
     var proto = Stage.prototype;
@@ -21,12 +23,12 @@ var Stage = (function (Pixi, Helper, MapContainerView, ButtonView) {
     };
 
     proto.zoomIn = function () {
-        var currScale = this.mapContainerView.getCurentScaleValue()+.1;
+        var currScale = this.mapContainerView.getCurentScaleValue()+Stage.SCALE_STEP;
         this.mapContainerView.setScale(currScale);
     };
 
     proto.zoomOut = function () {
-        var currScale = this.mapContainerView.getCurentScaleValue()-.1;
+        var currScale = this.mapContainerView.getCurentScaleValue()-Stage.SCALE_STEP;
         this.mapContainerView.setScale(currScale);
     };
 
