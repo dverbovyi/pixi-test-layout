@@ -6,8 +6,8 @@ var MapView = (function(Pixi, Helper){
      * @constructor
      */
     function MapView(){
-        this.mapHeight = document.body.offsetHeight - 150;
-        this.mapWidth = document.body.offsetWidth - 150;
+        this.mapHeight = document.body.offsetHeight / 2;
+        this.mapWidth = document.body.offsetWidth / 2;
         this.initialize();
     }
 
@@ -43,13 +43,11 @@ var MapView = (function(Pixi, Helper){
     proto.setScale = function(scale){
         var roundedScale = +(scale.toFixed(2));
         this.scale.set(roundedScale,roundedScale);
-        this.currentScale = roundedScale;
         Helper.toCenter(this);
     };
 
     proto.getCurrentScale = function(){
-        var value = this.currentScale;
-        return typeof value == 'number'? value : 1;
+        return this.scale.x;
     };
 
     return MapView;

@@ -12,6 +12,7 @@ var LayoutView = (function (Pixi, Helper, MapView, ButtonView, CircleView) {
 
     proto.initialize = function () {
         this.setup();
+        this.moveCircle();
     };
 
     proto.setup = function () {
@@ -22,6 +23,17 @@ var LayoutView = (function (Pixi, Helper, MapView, ButtonView, CircleView) {
         this.addChildAt(this.mapView, 0);
         this.addChildAt(this.circleView, 1);
         this.addChildAt(this.buttonView, 2);
+    };
+
+    proto.moveCircle = function(){
+        if(this.circleView.position.x > document.body.offsetWidth) {
+            this.circleView.zoomOut();
+            this.zoomIn();
+        }
+        this.circleView.position.x += 1;
+        this.moveTimeout = setTimeout(function(){
+            this.moveCircle();
+        }.bind(this), 10);
     };
 
     proto.zoomIn = function () {
