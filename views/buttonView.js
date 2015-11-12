@@ -5,11 +5,11 @@ var ButtonView = (function(Pixi, Helper){
 
     /**
      *
-     * @param {Object} stage
+     * @param {Object} layout
      * @constructor
      */
-    function ButtonView(stage){
-        this.stage = stage;
+    function ButtonView(layout){
+        this.layout = layout;
         this.style = {font : '48px Arial', align : 'center'};
         this.initialize();
     }
@@ -30,7 +30,7 @@ var ButtonView = (function(Pixi, Helper){
         plusButton.style = minusButton.style = this.style;
 
         this.setPosition(plusButton, {x:10, y:10});
-        this.setPosition(minusButton, {x:15, y:40});
+        this.setPosition(minusButton, {x:15, y:60});
 
         this.setButtonMode(plusButton);
         this.setButtonMode(minusButton);
@@ -53,11 +53,11 @@ var ButtonView = (function(Pixi, Helper){
     proto.setupEventListener = function(){
         var self = this;
         this.plusBtn.mousedown = function(){
-            self.stage.zoomIn();
+            self.layout.zoomIn();
         };
 
         this.minusBtn.mousedown = function(){
-            self.stage.zoomOut();
+            self.layout.zoomOut();
         }
     };
 
